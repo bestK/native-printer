@@ -113,7 +113,7 @@ jobs:
                                 -X 'github.com/bestk/native-printer/pkg/version.Version=${VERSION}' \
                                 -X 'github.com/bestk/native-printer/pkg/version.CommitHash=${GIT_COMMIT}' \
                                 -X 'github.com/bestk/native-printer/pkg/version.BuildTime=${BUILD_TIME}'" \
-                        -o "build/$output_name" ./cmd
+                        -o "build/$output_name" .
 
                       # 对 Linux 二进制文件执行 strip
                       if [ $GOOS = "linux" ]; then
