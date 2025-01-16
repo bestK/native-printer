@@ -1,0 +1,40 @@
+name: Go Build
+
+on:
+    release:
+        types: [created]
+    workflow_dispatch:
+        inputs:
+            platform:
+                description: '构建平台 (例如: windows/amd64, linux/arm64)'
+                required: false
+                type: string
+
+jobs:
+    build:
+        runs-on: windows-latest # 由于项目包含 Windows 打印功能，使用 Windows 环境
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: 设置 Go 环境
+              uses: actions/setup-go@v4
+              with:
+                  go-version: '1.21' # 指定 Go 版本
+
+            - name: 安装依赖
+              run: go mod download
+
+            - name: 构建
+              run: go build -v ./...
+
+            - name: 运行测试
+              run: go test -v ./...
+
+            - name: 上传构建产物
+              uses: actions/upload-artifact@v3
+              with:
+                  name: windows-build
+                  path: |
+                      *.exe
+                      *.dll

@@ -1,0 +1,9 @@
+{
+    "go.buildFlags": ["-tags=wireinject"],
+    "commentTranslate.targetLanguage": "zh-CN",
+    "go.delveConfig": {
+        "debugAdapter": "dlv-dap",
+        "showGlobalVariables": true
+    },
+    "go.testFlags": ["-v"]
+}

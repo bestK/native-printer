@@ -1,0 +1,134 @@
+2025/01/16 11:34:03 main.go:149: 服务启动，日志系统初始化完成
+2025/01/16 11:34:03 main.go:161: WebSocket 服务器启动在 :8080
+2025/01/16 11:34:53 main.go:149: 服务启动，日志系统初始化完成
+2025/01/16 11:34:57 main.go:161: WebSocket 服务器启动在 :8080
+2025/01/16 11:35:53 main.go:152: 服务启动，日志系统初始化完成
+2025/01/16 11:35:53 main.go:164: WebSocket 服务器启动在 :8080
+2025/01/16 11:37:39 main.go:188: 服务启动，日志系统初始化完成
+2025/01/16 11:37:39 main.go:200: WebSocket 服务器启动在 :8080
+2025/01/16 11:38:18 main.go:109: WebSocket 升级失败: websocket: request origin not allowed by Upgrader.CheckOrigin
+2025/01/16 11:38:49 main.go:188: 服务启动，日志系统初始化完成
+2025/01/16 11:38:49 main.go:221: WebSocket 服务器启动在 :8080
+2025/01/16 11:39:15 main.go:188: 服务启动，日志系统初始化完成
+2025/01/16 11:39:15 main.go:220: WebSocket 服务器启动在 :8080
+2025/01/16 11:39:20 main.go:109: WebSocket 升级失败: websocket: request origin not allowed by Upgrader.CheckOrigin
+2025/01/16 11:40:00 main.go:109: WebSocket 升级失败: websocket: request origin not allowed by Upgrader.CheckOrigin
+2025/01/16 11:41:20 main.go:157: 收到消息: {
+    "action": "printPDF",
+    "printer": "Microsoft Print to PDF",
+    "pdfUrl": "https://dmxfile.oss-cn-hongkong.aliyuncs.com/t/413/order_label_merge/1736955183957.pdf?Expires=1737559983&OSSAccessKeyId=LTAI5tMACd2RecjDwQGkY5iu&Signature=lu0qkhcy%2BxJnowibMSxR%2B6EtTck%3D&_=1111"
+}
+2025/01/16 11:41:20 main.go:169: 处理打印请求失败: 下载PDF失败: Get "": unsupported protocol scheme ""
+2025/01/16 11:43:02 main.go:201: 服务启动，日志系统初始化完成
+2025/01/16 11:43:02 main.go:233: WebSocket 服务器启动在 :8080
+2025/01/16 11:43:16 main.go:158: 收到消息: {
+    "action": "printPDF",
+    "printer": "Microsoft Print to PDF",
+    "pdfUrl": "https://dmxfile.oss-cn-hongkong.aliyuncs.com/t/413/order_label_merge/1736955183957.pdf?Expires=1737559983&OSSAccessKeyId=LTAI5tMACd2RecjDwQGkY5iu&Signature=lu0qkhcy%2BxJnowibMSxR%2B6EtTck%3D&_=1111"
+}
+2025/01/16 11:43:16 main.go:171: 处理打印请求失败: 下载PDF失败: Get "": unsupported protocol scheme ""
+2025/01/16 11:44:10 main.go:229: 服务启动，日志系统初始化完成
+2025/01/16 11:44:10 main.go:261: WebSocket 服务器启动在 :8080
+2025/01/16 11:44:28 main.go:186: 收到消息: {
+    "action": "printPDF",
+    "printer": "Microsoft Print to PDF",
+    "pdfUrl": "https://dmxfile.oss-cn-hongkong.aliyuncs.com/t/413/order_label_merge/1736955183957.pdf?Expires=1737559983&OSSAccessKeyId=LTAI5tMACd2RecjDwQGkY5iu&Signature=lu0qkhcy%2BxJnowibMSxR%2B6EtTck%3D&_=1111"
+}
+2025/01/16 11:44:28 main.go:199: 处理打印请求失败: 文件 URL 不能为空
+2025/01/16 11:44:37 main.go:186: 收到消息: {
+    "action": "printPDF",
+    "printer": "Microsoft Print to PDF",
+    "fileUrl": "https://dmxfile.oss-cn-hongkong.aliyuncs.com/t/413/order_label_merge/1736955183957.pdf?Expires=1737559983&OSSAccessKeyId=LTAI5tMACd2RecjDwQGkY5iu&Signature=lu0qkhcy%2BxJnowibMSxR%2B6EtTck%3D&_=1111"
+}
+2025/01/16 11:46:03 main.go:229: 服务启动，日志系统初始化完成
+2025/01/16 11:46:03 main.go:261: WebSocket 服务器启动在 :8080
+2025/01/16 11:46:11 main.go:186: 收到消息: {
+    "action": "printPDF",
+    "printer": "Microsoft Print to PDF",
+    "fileUrl": "https://dmxfile.oss-cn-hongkong.aliyuncs.com/t/413/order_label_merge/1736955183957.pdf?Expires=1737559983&OSSAccessKeyId=LTAI5tMACd2RecjDwQGkY5iu&Signature=lu0qkhcy%2BxJnowibMSxR%2B6EtTck%3D&_=1111"
+}
+2025/01/16 11:46:48 main.go:186: 收到消息: {
+    "action": "printPDF",
+    "printer": "Microsoft Print to PDF",
+    "fileUrl": "https://dmxfile.oss-cn-hongkong.aliyuncs.com/t/413/order_label_merge/1736955183957.pdf?Expires=1737559983&OSSAccessKeyId=LTAI5tMACd2RecjDwQGkY5iu&Signature=lu0qkhcy%2BxJnowibMSxR%2B6EtTck%3D&_=1111"
+}
+2025/01/16 11:50:14 main.go:229: 服务启动，日志系统初始化完成
+2025/01/16 11:50:14 main.go:261: WebSocket 服务器启动在 :8080
+2025/01/16 11:50:22 main.go:186: 收到消息: {
+    "action": "printPDF",
+    "printer": "Microsoft Print to PDF",
+    "fileUrl": "https://dmxfile.oss-cn-hongkong.aliyuncs.com/t/413/order_label_merge/1736955183957.pdf?Expires=1737559983&OSSAccessKeyId=LTAI5tMACd2RecjDwQGkY5iu&Signature=lu0qkhcy%2BxJnowibMSxR%2B6EtTck%3D&_=1111"
+}
+2025/01/16 11:50:30 main.go:199: 处理打印请求失败: 打印失败: 写入文件失败: A StartDocPrinter call was not issued.
+2025/01/16 11:51:19 main.go:229: 服务启动，日志系统初始化完成
+2025/01/16 11:51:19 main.go:261: WebSocket 服务器启动在 :8080
+2025/01/16 11:51:25 main.go:186: 收到消息: {
+    "action": "printPDF",
+    "printer": "Microsoft Print to PDF",
+    "fileUrl": "https://dmxfile.oss-cn-hongkong.aliyuncs.com/t/413/order_label_merge/1736955183957.pdf?Expires=1737559983&OSSAccessKeyId=LTAI5tMACd2RecjDwQGkY5iu&Signature=lu0qkhcy%2BxJnowibMSxR%2B6EtTck%3D&_=1111"
+}
+2025/01/16 11:51:32 main.go:199: 处理打印请求失败: 打印失败: 开始文档失败: The specified datatype is invalid.
+2025/01/16 11:52:01 main.go:229: 服务启动，日志系统初始化完成
+2025/01/16 11:52:01 main.go:261: WebSocket 服务器启动在 :8080
+2025/01/16 11:52:07 main.go:186: 收到消息: {
+    "action": "printPDF",
+    "printer": "Microsoft Print to PDF",
+    "fileUrl": "https://dmxfile.oss-cn-hongkong.aliyuncs.com/t/413/order_label_merge/1736955183957.pdf?Expires=1737559983&OSSAccessKeyId=LTAI5tMACd2RecjDwQGkY5iu&Signature=lu0qkhcy%2BxJnowibMSxR%2B6EtTck%3D&_=1111"
+}
+2025/01/16 11:53:13 main.go:229: 服务启动，日志系统初始化完成
+2025/01/16 11:53:13 main.go:261: WebSocket 服务器启动在 :8080
+2025/01/16 11:53:20 main.go:186: 收到消息: {
+    "action": "printPDF",
+    "printer": "Microsoft Print to PDF",
+    "fileUrl": "https://dmxfile.oss-cn-hongkong.aliyuncs.com/t/413/order_label_merge/1736955183957.pdf?Expires=1737559983&OSSAccessKeyId=LTAI5tMACd2RecjDwQGkY5iu&Signature=lu0qkhcy%2BxJnowibMSxR%2B6EtTck%3D&_=1111"
+}
+2025/01/16 11:53:20 main.go:199: 处理打印请求失败: 打印失败: 开始文档失败: The data is invalid.
+2025/01/16 11:53:45 main.go:186: 收到消息: {
+    "action": "printPDF",
+    "printer": "Microsoft Print to PDF",
+    "fileUrl": "https://dmxfile.oss-cn-hongkong.aliyuncs.com/t/413/order_label_merge/1736955183957.pdf?Expires=1737559983&OSSAccessKeyId=LTAI5tMACd2RecjDwQGkY5iu&Signature=lu0qkhcy%2BxJnowibMSxR%2B6EtTck%3D&_=1111"
+}
+2025/01/16 11:53:45 main.go:199: 处理打印请求失败: 打印失败: 开始文档失败: The data is invalid.
+2025/01/16 11:54:24 main.go:186: 收到消息: {
+    "action": "printPDF",
+    "printer": "Microsoft Print to PDF",
+    "fileUrl": "https://dmxfile.oss-cn-hongkong.aliyuncs.com/t/413/order_label_merge/1736955183957.pdf?Expires=1737559983&OSSAccessKeyId=LTAI5tMACd2RecjDwQGkY5iu&Signature=lu0qkhcy%2BxJnowibMSxR%2B6EtTck%3D&_=1111"
+}
+2025/01/16 11:55:52 main.go:199: 处理打印请求失败: 打印失败: 开始文档失败: The data is invalid.
+2025/01/16 11:56:48 main.go:186: 收到消息: {
+    "action": "printPDF",
+    "printer": "Microsoft Print to PDF",
+    "fileUrl": "https://dmxfile.oss-cn-hongkong.aliyuncs.com/t/413/order_label_merge/1736955183957.pdf?Expires=1737559983&OSSAccessKeyId=LTAI5tMACd2RecjDwQGkY5iu&Signature=lu0qkhcy%2BxJnowibMSxR%2B6EtTck%3D&_=1111"
+}
+2025/01/16 11:56:57 main.go:199: 处理打印请求失败: 打印失败: 开始文档失败: The data is invalid.
+2025/01/16 11:57:05 main.go:186: 收到消息: {
+    "action": "printPDF",
+    "printer": "Microsoft Print to PDF",
+    "fileUrl": "https://dmxfile.oss-cn-hongkong.aliyuncs.com/t/413/order_label_merge/1736955183957.pdf?Expires=1737559983&OSSAccessKeyId=LTAI5tMACd2RecjDwQGkY5iu&Signature=lu0qkhcy%2BxJnowibMSxR%2B6EtTck%3D&_=1111"
+}
+2025/01/16 11:57:32 main.go:199: 处理打印请求失败: 打印失败: 开始文档失败: The data is invalid.
+2025/01/16 11:57:40 main.go:186: 收到消息: {
+    "action": "printPDF",
+    "printer": "Microsoft Print to PDF",
+    "fileUrl": "https://dmxfile.oss-cn-hongkong.aliyuncs.com/t/413/order_label_merge/1736955183957.pdf?Expires=1737559983&OSSAccessKeyId=LTAI5tMACd2RecjDwQGkY5iu&Signature=lu0qkhcy%2BxJnowibMSxR%2B6EtTck%3D&_=1111"
+}
+2025/01/16 11:58:08 main.go:199: 处理打印请求失败: 打印失败: 开始文档失败: The data is invalid.
+2025/01/16 11:58:39 main.go:229: 服务启动，日志系统初始化完成
+2025/01/16 11:58:39 main.go:261: WebSocket 服务器启动在 :8080
+2025/01/16 11:58:50 main.go:229: 服务启动，日志系统初始化完成
+2025/01/16 11:58:50 main.go:261: WebSocket 服务器启动在 :8080
+2025/01/16 11:59:03 main.go:186: 收到消息: {
+    "action": "printPDF",
+    "printer": "Microsoft Print to PDF",
+    "fileUrl": "https://dmxfile.oss-cn-hongkong.aliyuncs.com/t/413/order_label_merge/1736955183957.pdf?Expires=1737559983&OSSAccessKeyId=LTAI5tMACd2RecjDwQGkY5iu&Signature=lu0qkhcy%2BxJnowibMSxR%2B6EtTck%3D&_=1111"
+}
+2025/01/16 11:59:46 main.go:186: 收到消息: {
+    "action": "printPDF",
+    "printer": "Microsoft Print to PDF",
+    "fileUrl": "https://dmxfile.oss-cn-hongkong.aliyuncs.com/t/413/order_label_merge/1736955183957.pdf?Expires=1737559983&OSSAccessKeyId=LTAI5tMACd2RecjDwQGkY5iu&Signature=lu0qkhcy%2BxJnowibMSxR%2B6EtTck%3D&_=1111"
+}
+2025/01/16 12:00:48 main.go:186: 收到消息: {
+    "action": "printPDF",
+    "printer": "KONICA MINOLTA 423SeriesPCL-8",
+    "fileUrl": "https://dmxfile.oss-cn-hongkong.aliyuncs.com/t/413/order_label_merge/1736955183957.pdf?Expires=1737559983&OSSAccessKeyId=LTAI5tMACd2RecjDwQGkY5iu&Signature=lu0qkhcy%2BxJnowibMSxR%2B6EtTck%3D&_=1111"
+}
