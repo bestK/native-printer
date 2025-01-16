@@ -47,8 +47,12 @@ jobs:
                   cp config.yaml temp/config.yaml
 
                   # 安装跨平台编译工具和 strip 工具
+                  sudo dpkg --add-architecture arm64
                   sudo apt-get update
-                  sudo apt-get install -y gcc-multilib gcc-mingw-w64 gcc-aarch64-linux-gnu
+                  sudo apt-get install -y \
+                    gcc-multilib \
+                    gcc-mingw-w64 \
+                    crossbuild-essential-arm64
 
                   # 修改平台定义逻辑
                   if [ -n "${{ github.event.inputs.platform }}" ]; then
@@ -89,7 +93,7 @@ jobs:
                               CC="gcc"
                               ;;
                           "linux_arm64")
-                              CC="gcc -marm64"
+                              CC="aarch64-linux-gnu-gcc"
                               ;;
                           "linux_386")
                               CC="gcc -m32"
