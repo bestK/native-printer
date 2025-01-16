@@ -1,4 +1,4 @@
-name: Go Build
+name: Release Build
 
 on:
     release:
@@ -11,30 +11,147 @@ on:
                 type: string
 
 jobs:
-    build:
-        runs-on: windows-latest # 由于项目包含 Windows 打印功能，使用 Windows 环境
-
+    release:
+        runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
 
-            - name: 设置 Go 环境
+            - name: Set up Go
               uses: actions/setup-go@v4
               with:
-                  go-version: '1.21' # 指定 Go 版本
+                  go-version: '1.23'
+                  cache: true
 
-            - name: 安装依赖
-              run: go mod download
+            - name: Configure Git for private modules
+              env:
+                  TOKEN: ${{ secrets.GH_PAT }}
+              run: git config --global url."https://${TOKEN}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
 
-            - name: 构建
-              run: go build -v ./...
+            - name: Build Multi-Platform Binaries
+              run: |
+                  # 获取版本号 (从 tag 中提取)
+                  VERSION=${GITHUB_REF#refs/tags/}
+                  BUILD_TIME=$(date -u '+%Y-%m-%d %H:%M:%S')
+                  GIT_COMMIT=$(git rev-parse --short HEAD)
 
-            - name: 运行测试
-              run: go test -v ./...
+                  echo "Building version: $VERSION"
+                  echo "Commit hash: $GIT_COMMIT"
+                  echo "Build time: $BUILD_TIME"
 
-            - name: 上传构建产物
-              uses: actions/upload-artifact@v3
+                  mkdir -p build
+                  mkdir -p temp
+
+                  # 复制 config.yaml 到 temp 目录
+                  cp config.yaml.sample temp/config.yaml
+
+                  # 安装跨平台编译工具
+                  sudo apt-get update
+                  sudo apt-get install -y gcc-multilib gcc-mingw-w64
+
+                  # 修改平台定义逻辑
+                  if [ -n "${{ github.event.inputs.platform }}" ]; then
+                      # 如果指定了特定平台，只构建该平台
+                      platforms=("${{ github.event.inputs.platform }}")
+                      echo "构建指定平台: ${platforms[0]}"
+                  else
+                      # 否则构建所有支持的平台
+                      platforms=(
+                        #   "windows/amd64"
+                        #   "windows/386"
+                        #   "linux/amd64"
+                          "linux/arm64"
+                        #   "linux/386"
+                      )
+                      echo "构建所有支持的平台"
+                  fi
+
+                  # 并行构建所有平台
+                  build_platform() {
+                      platform=$1
+                      platform_split=(${platform//\// })
+                      GOOS=${platform_split[0]}
+                      GOARCH=${platform_split[1]}
+                      
+                      # 所有平台都禁用 CGO
+                      CGO_ENABLED=0
+                      
+                      # 根据目标平台设置交叉编译器
+                      case "${GOOS}_${GOARCH}" in
+                          "windows_amd64")
+                              CC="x86_64-w64-mingw32-gcc"
+                              ;;
+                          "windows_386")
+                              CC="i686-w64-mingw32-gcc"
+                              ;;
+                          "linux_amd64")
+                              CC="gcc"
+                              ;;
+                          "linux_arm64")
+                              CC="gcc -marm64"
+                              ;;
+                          "linux_386")
+                              CC="gcc -m32"
+                              ;;
+                      esac
+
+                      if [ $GOOS = "windows" ]; then
+                          output_name="native-printer-${GOOS}-${GOARCH}-${VERSION}.exe"
+                      else
+                          output_name="native-printer-${GOOS}-${GOARCH}-${VERSION}"
+                      fi
+
+                      echo "Building for ${GOOS}/${GOARCH}..."
+                      echo "Using CC=$CC"
+                      echo "CGO_ENABLED=$CGO_ENABLED"
+
+                      # 设置环境变量并构建
+                      CC=$CC GOOS=$GOOS GOARCH=$GOARCH CGO_ENABLED=$CGO_ENABLED go build \
+                        -trimpath \
+                        -ldflags "-s -w \
+                                -X 'github.com/bestk/native-printer/pkg/version.Version=${VERSION}' \
+                                -X 'github.com/bestk/native-printer/pkg/version.CommitHash=${GIT_COMMIT}' \
+                                -X 'github.com/bestk/native-printer/pkg/version.BuildTime=${BUILD_TIME}'" \
+                        -o "build/$output_name" ./cmd
+
+                      # 对 Linux 二进制文件执行 strip
+                      if [ $GOOS = "linux" ]; then
+                          strip "build/$output_name"
+                      fi
+
+                      # 创建发布包
+                      pkg_dir="temp/native-printer-${GOOS}-${GOARCH}-${VERSION}"
+                      mkdir -p "$pkg_dir"
+                      cp "build/$output_name" "$pkg_dir/"
+                      cp "temp/config.yaml" "$pkg_dir/"
+                      
+                      # 创建压缩包
+                      cd temp
+                      if [ $GOOS = "windows" ]; then
+                          zip -r "../build/native-printer-${GOOS}-${GOARCH}-${VERSION}.zip" "native-printer-${GOOS}-${GOARCH}-${VERSION}"
+                      else
+                          tar -czf "../build/native-printer-${GOOS}-${GOARCH}-${VERSION}.tar.gz" "native-printer-${GOOS}-${GOARCH}-${VERSION}"
+                      fi
+                      cd ..
+                  }
+
+                  # 并行执行所有平台的构建
+                  for platform in "${platforms[@]}"
+                  do
+                      build_platform "$platform" &
+                  done
+
+                  # 等待所有构建完成
+                  wait
+
+                  # 清理临时目录
+                  rm -rf temp
+
+            - name: Create Release
+              uses: softprops/action-gh-release@v1
               with:
-                  name: windows-build
-                  path: |
-                      *.exe
-                      *.dll
+                  files: |
+                      build/*
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
