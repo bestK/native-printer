@@ -44,7 +44,7 @@ jobs:
                   mkdir -p temp
 
                   # 复制 config.yaml 到 temp 目录
-                  cp config.yaml.sample temp/config.yaml
+                  cp config.yaml temp/config.yaml
 
                   # 安装跨平台编译工具
                   sudo apt-get update

@@ -19,6 +19,5 @@ func GetVersionInfo() string {
 }
 
 func GetAppName() string {
-	return fmt.Sprintf("Temu Power %s", Version)
+	return fmt.Sprintf("Native Printer %s", Version)
 }
-
