@@ -126,7 +126,7 @@ jobs:
                                   strip "build/$output_name"
                                   ;;
                               "arm64")
-                                  aarch64-linux-gnu-strip "build/$output_name"
+                                  strip "build/$output_name"
                                   ;;
                               "386")
                                   strip "build/$output_name"
