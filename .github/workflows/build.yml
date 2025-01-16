@@ -46,13 +46,9 @@ jobs:
                   # 复制 config.yaml 到 temp 目录
                   cp config.yaml temp/config.yaml
 
-                  # 安装跨平台编译工具和 strip 工具
-                  sudo dpkg --add-architecture arm64
+                  # 安装跨平台编译工具
                   sudo apt-get update
-                  sudo apt-get install -y \
-                    gcc-multilib \
-                    gcc-mingw-w64 \
-                    crossbuild-essential-arm64
+                  sudo apt-get install -y gcc-multilib gcc-mingw-w64
 
                   # 修改平台定义逻辑
                   if [ -n "${{ github.event.inputs.platform }}" ]; then
@@ -93,7 +89,7 @@ jobs:
                               CC="gcc"
                               ;;
                           "linux_arm64")
-                              CC="aarch64-linux-gnu-gcc"
+                              CC="gcc -marm64"
                               ;;
                           "linux_386")
                               CC="gcc -m32"
@@ -121,17 +117,7 @@ jobs:
 
                       # 对 Linux 二进制文件执行 strip
                       if [ $GOOS = "linux" ]; then
-                          case "$GOARCH" in
-                              "amd64")
-                                  strip "build/$output_name"
-                                  ;;
-                              "arm64")
-                                  strip "build/$output_name"
-                                  ;;
-                              "386")
-                                  strip "build/$output_name"
-                                  ;;
-                          esac
+                          strip "build/$output_name"
                       fi
 
                       # 创建发布包
@@ -142,7 +128,6 @@ jobs:
                       
                       # 创建压缩包
                       cd temp
-                      ls -l
                       if [ $GOOS = "windows" ]; then
                           zip -r "../build/native-printer-${GOOS}-${GOARCH}-${VERSION}.zip" "native-printer-${GOOS}-${GOARCH}-${VERSION}"
                       else
